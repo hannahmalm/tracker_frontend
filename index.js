@@ -23,7 +23,7 @@ function getExercise() {
                 </div>
                 <br></br>`; 
 
-                document.querySelector('#exercise-container').innerHTML += exerciseMarkup //add the new markup into the div container on html to render it 
+                //add the new markup into the div container on html to render it 
 
         })//get access to json data. exercise is an array of exercises
         //render the exercises

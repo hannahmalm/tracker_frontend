@@ -8,9 +8,43 @@
 </head>
 <body>
 
+    <div class="form-container">
+        <!--Container to render the new exercise form-->
+
+        <form id="create-new-exercise-form">
+            <h2>Create a New Exercise</h2>
+            <h6>New exercises will be added to the exercise library</h6>
+
+            <!-- Input for Exercise Name - Text-->
+            <input id='exercise-name' type="text" name="name" value="">
+            <!--placeholder="Enter your exercise name" class=input-text-->
+
+            <!-- Input for Exercise Instructions - Text Box -->
+            <textarea id='exercise-instructions' name='Instructions' rows='6' cols='50' value="" placeholder='Enter your Exercise Instructions'></textarea>
+            
+            <!-- Input for Image-->
+            <input id='exercise-image' type='text' name='image' value="" placeholder="Enter you Exercise image">
+
+
+            <!-- Input dropdown to pick a category -->
+            <select id="categories" name="categories">
+                <option value="1">Push</option>
+                <option value="2">Pull</option>
+                <option value="3">Legs</option>
+            </select>
+
+
+            <!--Add a submit Button-->
+            <input id='create-exercise' type="submit" name="sbumit" value="Create New Exercise" class="submit">
+        </form>
+    </div>
+
+
     <div id="exercise-container">
         <!--Container to render all of the exercises-->
     </div>
+
+  
 
     
 </body>
