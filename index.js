@@ -49,6 +49,10 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
     //exercise_instructions = document.querySelector('#exercise-name').value
     //exercise_image = document.querySelector('#exercise-image').value
     //category = document.querySelector('#category').value
+    const exerciseName = document.querySelector('#exercise-name').value
+    const exerciseInstructions = document.querySelector('#exercise-name').value
+    const exerciseImage = document.querySelector('#exercise-image').value
+    const category = document.querySelector('#category').value
   
    
     //find input values by using the debugger
