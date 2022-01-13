@@ -19,11 +19,11 @@ function getExercise() {
                     <h2>${exercises.attributes.name}</h2>
                     <p>${exercises.attributes.instructions}</p>
                     <img src=${exercises.attributes.image} height="200" width="250"> </img>
-                    <h3>${exercises.attributes.category.title}</h3>
+                    <h5>Category: ${exercises.attributes.category.title}</h5>
                 </div>
                 <br></br>`; 
 
-                document.querySelector('#exercise-container').innerHTML += exerciseMarkup
+                document.querySelector('#exercise-container').innerHTML += exerciseMarkup //add the new markup into the div container on html to render it 
 
         })//get access to json data. exercise is an array of exercises
         //render the exercises
