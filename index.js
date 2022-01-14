@@ -4,7 +4,7 @@ const exerciseURL = "http://localhost:3000/api/v1/exercises"
 //The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
 document.addEventListener('DOMContentLoaded', () => {
     getExercise() //render the exercise arrays
-
+    //fetch and load all exercises
     const createExerciseForm = document.querySelector("#create-new-exercise-form") //query the exercise form (in html)
 
     //After querying the form, the user will input data
@@ -23,7 +23,15 @@ function getExercise() {
     .then(exercise => { //get the exercise ARRAY - since its an array, you need to iterate
         exercise.data.forEach(exercises => {
             // debugger; //Use debugger to type in exercise.attributes to find all the attributes
-            const exerciseMarkup = `
+            render(exercises)
+        })//get access to json data. exercise is an array of exercises
+        //render the exercises
+    })
+} //navigate to the index.js and view xhl to ensure this works 
+
+
+function render(exercises) {
+    const exerciseMarkup = `
                 <div data-id=${exercises.id}> 
                     <h2>${exercises.attributes.name}</h2>
                     <p>${exercises.attributes.instructions}</p>
@@ -34,10 +42,9 @@ function getExercise() {
 
                 //add the new markup into the div container on html to render it 
                 document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
-        })//get access to json data. exercise is an array of exercises
-        //render the exercises
-    })
-} //navigate to the index.js and view xhl to ensure this works 
+
+}
+
 
 
 function createFormHandler(e){ //handle the form inputs, prevent the default, and do something with it
