@@ -57,7 +57,7 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
     //document.querySelector('#exercise-image').value
     //document.querySelector('#category').value
     const exerciseName = document.querySelector('#exercise-name').value
-    const exerciseInstructions = document.querySelector('#exercise-name').value
+    const exerciseInstructions = document.querySelector('#exercise-instructions').value
     const exerciseImage = document.querySelector('#exercise-image').value
     const category = document.querySelector('#categories').value //this returns a string
     const categoryId = parseInt(document.querySelector('#categories').value) //this returns an integer
@@ -88,17 +88,17 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
 
 
 function postFetch(name, instructions, image, category_id){
-const data = {name, instructions, image, category_id};
+const exercise = {name, instructions, image, category_id};
  fetch(exerciseURL, {
         method:"POST", 
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(data),
+        body: JSON.stringify(exercise),
         })
         .then(response => response.json())
-        .then(data => {
-        console.log('Success:', data);
+        .then(exercise => {
+        console.log('Success:', exercise);
         })
         .catch((error) => {
         console.error('Error:', error);
