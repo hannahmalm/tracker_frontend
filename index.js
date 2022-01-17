@@ -67,23 +67,24 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
 
 
 //look up using fetch documentation - this is a POST. Get the information from the backend 
-function postFetch(name, instructions, image, category_id){  
-    //const bodyData = {name, instructions, image, category_id}
-    fetch(exerciseURL, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(name, instructions, image, category_id) // body data type must match "Content-Type" header
-    });
-    })
-    .then(response => response.json())
-    .then(exercise => {
-        console.log(exercise);
-        //const exerciseData = exercise.data
-        //render JSON response
-        render(exercises)
-        //add the new markup into the div container on html to render it 
-        document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
-    })
+// function postFetch(name, instructions, image, category_id){  
+//     //const bodyData = {name, instructions, image, category_id}
+//     fetch(exerciseURL, {
+//         method: "POST",
+//         headers: {"Content-Type": "application/json"}, // 
+//         body: JSON.stringify(name, instructions, image, category_id) //body data must match content-type header
+//     })
+//     .then(response => response.json())
+//     .then(exercise => {
+//         console.log(exercise);
+//         //const exerciseData = exercise.data
+//         //render JSON response
+//         render(exercises)
+//         //add the new markup into the div container on html to render it 
+//         document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
+//     })
 
-}
+// }
+
+
 
