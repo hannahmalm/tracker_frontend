@@ -59,8 +59,8 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
     const exerciseName = document.querySelector('#exercise-name').value
     const exerciseInstructions = document.querySelector('#exercise-name').value
     const exerciseImage = document.querySelector('#exercise-image').value
-    const category = document.querySelector('#category').value //this returns a string
-    const categoryId = parseInt(document.querySelector('#category').value) //this returns an integer
+    const category = document.querySelector('#categories').value //this returns a string
+    const categoryId = parseInt(document.querySelector('#categories').value) //this returns an integer
     postFetch(exerciseName, exerciseInstructions, exerciseImage, categoryId) //fetch the information from backend, tell it what to fetch 
 
 }
@@ -68,28 +68,21 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
 
 //look up using fetch documentation - this is a POST. Get the information from the backend 
 function postFetch(name, instructions, image, category_id){  
-    const bodyData = {name, instructions, image, category_id}
+    //const bodyData = {name, instructions, image, category_id}
     fetch(exerciseURL, {
         method: "POST",
         headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(bodyData)
+        body: JSON.stringify(name, instructions, image, category_id) // body data type must match "Content-Type" header
+    });
     })
     .then(response => response.json())
     .then(exercise => {
         console.log(exercise);
-        const exerciseData = exercises.data.attributes
+        //const exerciseData = exercise.data
         //render JSON response
-        const exerciseMarkup = `
-                <div data-id=${exerciseData.id}> 
-                    <h2>${exerciseData.name}</h2>
-                    <p>${exerciseData.instructions}</p>
-                    <img src=${exerciseData.image} height="200" width="250"> </img>
-                    <h5>Category: ${exerciseData.category.title}</h5>
-                </div>
-                <br></br>`; 
-
-
-            document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
+        render(exercises)
+        //add the new markup into the div container on html to render it 
+        document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
     })
 
 }
