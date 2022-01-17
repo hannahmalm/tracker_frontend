@@ -87,7 +87,7 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
 // }
 
 
-function postFETCH(name, instructions, image, category_id)
+function postFetch(name, instructions, image, category_id){
 const data = {name, instructions, image, category_id};
  fetch(exerciseURL, {
         method:"POST", 
@@ -103,4 +103,5 @@ const data = {name, instructions, image, category_id};
         .catch((error) => {
         console.error('Error:', error);
         });
-
+        render(exercises)
+    }
