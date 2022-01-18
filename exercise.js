@@ -20,14 +20,16 @@ class Exercise {
         this.instructions = exercisesAttributes.instructions;
         this.image = exercisesAttributes.image;
         this.category_id = exercisesAttributes.category_id;
-        Exercise.call.push(this)
+        Exercise.all.push(this) // push each new instance of this into array
 
     }
 }
 
-var squat = new Exercise("squat", "Instructions for squat", "image", "3")
+Exercise.all = [];
 
-console.log(squat); 
+// var squat = new Exercise("squat", "Instructions for squat", "image", "3")
+
+// console.log(squat); 
 
 //the new Keyword - You could call var newExercise = new Exercise(HammerCurl, Instructions for it, image for it);
     //creates a new empty object
