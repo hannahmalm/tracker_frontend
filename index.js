@@ -23,6 +23,9 @@ function getExercise() {
     .then(exercise => { //get the exercise ARRAY - since its an array, you need to iterate
         exercise.data.forEach(exercises => {
             // debugger; //Use debugger to type in exercise.attributes to find all the attributes
+            //ensure you have a data-id to work with OOJS
+            //Data Ids let you know which exercise you are making/clicking on
+            //Without data id youd have to do: @exercise = Exercise.find_by(name: params[:name])
             const exerciseMarkup = `
             <div data-id=${exercises.id}> 
                 <h2>${exercises.attributes.name}</h2>
