@@ -75,8 +75,8 @@ function postFetch(name, instructions, image, category_id) {
         console.log(exercise); //always console log so that we can see what the code looks like 
         const exerciseData = exercise.data
         renderPostFetch()
-        
     })
+   
 
     function renderPostFetch(){
         const exerciseMarkup = `
