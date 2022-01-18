@@ -16,13 +16,14 @@ class Exercise {
     //function that constructs/creats a new object (exercise object) -> You could call var newExercise = new Exercise();
     //pass the constructor the arguments of what you want each Exercise to have
     // Correlattes with -> const newExercise = new Exercise(exercises, exercises.attributes)
-    constructor(exercise, exercisesAttributes) {
+    constructor(exercise, exerciseAttributes) {
         this.id = exercise.id 
-        this.name = exercisesAttributes.name;
-        this.instructions = exercisesAttributes.instructions;
-        this.image = exercisesAttributes.image;
-        this.category_id = exercisesAttributes.category_id;
+        this.name = exerciseAttributes.name
+        this.instructions = exerciseAttributes.instructions
+        this.image = exerciseAttributes.image
+        this.category = exerciseAttributes.category
         Exercise.all.push(this) // push each new instance of this into array
+        console.log(this);
     }
 
         
@@ -31,12 +32,13 @@ class Exercise {
     //rendering html should be within the class 
     //do not have to specify .attributes because its givin within params above
     renderExerciseCard() {
+    
         return `
         <div data-id=${this.id}> 
             <h2>${this.name}</h2>
             <p>${this.instructions}</p>
             <img src=${this.image} height="200" width="250"> </img>
-            <h5>Category: ${this.category.title}</h5>
+           <h2>${this.category.title}</h2>
         </div>
         <br></br>`;
     }

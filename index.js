@@ -27,21 +27,20 @@ function getExercise() {
             //Data Ids let you know which exercise you are making/clicking on
             //Without data id youd have to do: @exercise = Exercise.find_by(name: params[:name])
             //create a new instance of the Exercise class for every exercise in the array
-        
-            //const newExercise = new Exercise(exercise.id, exercises.attributes)
+            let newExercise = new Exercise(exercises, exercises.attributes)
             
-            const exerciseMarkup = `
-            <div data-id=${exercises.id}> 
-                <h2>${exercises.attributes.name}</h2>
-                <p>${exercises.attributes.instructions}</p>
-                <img src=${exercises.attributes.image} height="200" width="250"> </img>
-                <h5>Category: ${exercises.attributes.category.title}</h5>
-            </div>
-            <br></br>`; 
+            // const exerciseMarkup = `
+            // <div data-id=${exercises.id}> 
+            //     <h2>${exercises.attributes.name}</h2>
+            //     <p>${exercises.attributes.instructions}</p>
+            //     <img src=${exercises.attributes.image} height="200" width="250"> </img>
+            //     <h5>Category: ${exercises.attributes.category.title}</h5>
+            // </div>
+            // <br></br>`; 
 
             //add the new markup into the div container on html to render it 
-            document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
-            //document.querySelector('#exercise-container').innerHTML += newExercise.renderExerciseCard();
+            //document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
+            document.querySelector('#exercise-container').innerHTML += newExercise.renderExerciseCard()
 
         })//get access to json data. exercise is an array of exercises
         //render the exercises
