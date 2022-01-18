@@ -28,7 +28,7 @@ function getExercise() {
             //Without data id youd have to do: @exercise = Exercise.find_by(name: params[:name])
             //create a new instance of the Exercise class for every exercise in the array
         
-            const newExercise = new Exercise(exercises, exercises.attributes)
+            //const newExercise = new Exercise(exercise.id, exercises.attributes)
             
             const exerciseMarkup = `
             <div data-id=${exercises.id}> 
@@ -41,6 +41,8 @@ function getExercise() {
 
             //add the new markup into the div container on html to render it 
             document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
+            //document.querySelector('#exercise-container').innerHTML += newExercise.renderExerciseCard();
+
         })//get access to json data. exercise is an array of exercises
         //render the exercises
     })
@@ -94,18 +96,7 @@ function postFetch(name, instructions, image, category_id) {
     })
    
 
-    function renderPostFetch(){
-        const exerciseMarkup = `
-        <div data-id=${exercise.id}> 
-            <h2>${exerciseData.attributes.name}</h2>
-            <p>${exerciseData.attributes.instructions}</p>
-            <img src=${exerciseData.attributes.image} height="200" width="250"> </img>
-            <h5>Category: ${exerciseData.attributes.category.title}</h5>
-        </div>
-        <br></br>`;
-         document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
-
-    }
+   
 
     
 }
