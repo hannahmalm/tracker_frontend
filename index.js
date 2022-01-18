@@ -114,19 +114,3 @@ function postFetch(name, instructions, image, category_id){
 
     
 }
-
-
-function render(exercises) {
-    const exerciseMarkup = `
-                <div data-id=${exercises.id}> 
-                    <h2>${exercises.attributes.name}</h2>
-                    <p>${exercises.attributes.instructions}</p>
-                    <img src=${exercises.attributes.image} height="200" width="250"> </img>
-                    <h5>Category: ${exercises.attributes.category.title}</h5>
-                </div>
-                <br></br>`; 
-
-                //add the new markup into the div container on html to render it 
-                document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
-
-}
