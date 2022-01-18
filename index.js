@@ -64,32 +64,7 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
 
 
 function postFetch(name, instructions, image, category_id){
-    console.log(name, instructions, image, category_id); 
-    let data = {name, instructions, image, category_id} //body object
- fetch(exerciseURL, {
-        method:"POST", 
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(data)
-        })
-        .then(response => response.json())
-        .then(exercises=> {
-        console.log(exercises);
-        debugger
-        const exerciseData = exercises.data
-        const exerciseMarkup = `
-        <div data-id=${exercises.id}> 
-            <h3>${exerciseData.attributes.name}
-            <p>${exerciseData.attributes.instructions}</p>
-            <img src=${exerciseData.attributes.image} height="200" width="250"> </img>
-            <h5>Category: ${exerciseData.attributes.category.title}</h5>
-        </div>
-        <br></br>`; 
 
-        //add the new markup into the div container on html to render it 
-        document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
-
-      
-    })
 
     
 }
