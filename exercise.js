@@ -7,6 +7,7 @@
 // ENSURE YOU ARE PUTTING data-ids on all divs when rendering 
 //Why push it in the array? You do an initial get fetch to get all exercises, so put them in an array and store them
 //https://www.youtube.com/watch?v=HboT8g_QSGc
+//NO functions in classes
 
 
 class Exercise {
@@ -22,23 +23,25 @@ class Exercise {
         this.image = exercisesAttributes.image;
         this.category_id = exercisesAttributes.category_id;
         Exercise.all.push(this) // push each new instance of this into array
+    }
 
+        
+
+
+    //rendering html should be within the class 
+    //do not have to specify .attributes because its givin within params above
+    renderExerciseCard() {
+        return `
+        <div data-id=${this.id}> 
+            <h2>${this.name}</h2>
+            <p>${this.instructions}</p>
+            <img src=${this.image} height="200" width="250"> </img>
+            <h5>Category: ${this.category.title}</h5>
+        </div>
+        <br></br>`;
     }
 }
 
-//rendering html should be within the class 
-function renderPostFetch(){
-    const exerciseMarkup = `
-    <div data-id=${exercise.id}> 
-        <h2>${exerciseData.attributes.name}</h2>
-        <p>${exerciseData.attributes.instructions}</p>
-        <img src=${exerciseData.attributes.image} height="200" width="250"> </img>
-        <h5>Category: ${exerciseData.attributes.category.title}</h5>
-    </div>
-    <br></br>`;
-     document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
-
-}
 
 Exercise.all = [];
 
