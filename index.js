@@ -72,7 +72,7 @@ function postFetch(name, instructions, image, category_id) {
     })
     .then(response => response.json())
     .then(exercise => {
-        console.log(exercise);
+        console.log(exercise); //always console log so that we can see what the code looks like 
         const exerciseData = exercise.data
         renderPostFetch()
         
