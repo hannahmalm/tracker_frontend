@@ -89,25 +89,25 @@ function postFetch(name, instructions, image, category_id){
     let data = {name, instructions, image, category_id} //body object
  fetch(exerciseURL, {
         method:"POST", 
-        headers: {
-            'Content-Type': 'application/json',
-        },
+        headers: {"Content-Type": "application/json"},
         body: JSON.stringify(data)
         })
         .then(response => response.json())
         .then(exercises=> {
         console.log(exercises);
-        //const exerciseData = exercises.data
-        const exercisePostMarkup = `
+        debugger
+        const exerciseData = exercises.data
+        const exerciseMarkup = `
         <div data-id=${exercises.id}> 
-            <p>${exercises.instructions}</p>
-            <img src=${exercises.image} height="200" width="250"> </img>
-            <h5>Category: ${exercises.category.title}</h5>
+            <h3>${exerciseData.attributes.name}
+            <p>${exerciseData.attributes.instructions}</p>
+            <img src=${exerciseData.attributes.image} height="200" width="250"> </img>
+            <h5>Category: ${exerciseData.attributes.category.title}</h5>
         </div>
         <br></br>`; 
 
         //add the new markup into the div container on html to render it 
-        document.querySelector('#exercise-container').innerHTML += exercisePostMarkup;
+        document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
 
       
     })
