@@ -26,6 +26,10 @@ function getExercise() {
             //ensure you have a data-id to work with OOJS
             //Data Ids let you know which exercise you are making/clicking on
             //Without data id youd have to do: @exercise = Exercise.find_by(name: params[:name])
+            //create a new instance of the Exercise class for every exercise in the array
+        
+            const newExercise = new Exercise(exercises, exercisesAttributes)
+            
             const exerciseMarkup = `
             <div data-id=${exercises.id}> 
                 <h2>${exercises.attributes.name}</h2>
