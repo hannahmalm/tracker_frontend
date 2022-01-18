@@ -5,7 +5,7 @@ const exerciseURL = "http://localhost:3000/api/v1/exercises"
 document.addEventListener('DOMContentLoaded', () => {
     getExercise() //render the exercise arrays
     //fetch and load all exercises
-    const createExerciseForm = document.querySelector("#create-new-exercise-form") //query the exercise form (in html)
+    let createExerciseForm = document.querySelector("#create-new-exercise-form") //query the exercise form (in html)
 
     //After querying the form, the user will input data
     //Wait and listen for the user to submit the form
@@ -30,20 +30,7 @@ function getExercise() {
 } //navigate to the index.js and view xhl to ensure this works 
 
 
-function render(exercises) {
-    const exerciseMarkup = `
-                <div data-id=${exercises.id}> 
-                    <h2>${exercises.attributes.name}</h2>
-                    <p>${exercises.attributes.instructions}</p>
-                    <img src=${exercises.attributes.image} height="200" width="250"> </img>
-                    <h5>Category: ${exercises.attributes.category.title}</h5>
-                </div>
-                <br></br>`; 
 
-                //add the new markup into the div container on html to render it 
-                document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
-
-}
 
 
 
@@ -60,7 +47,7 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
     const exerciseInstructions = document.querySelector('#exercise-instructions').value
     const exerciseImage = document.querySelector('#exercise-image').value
     const category = document.querySelector('#categories').value //this returns a string
-    const categoryId = parseInt(document.querySelector('#categories').value) //this returns an integer
+    const categoryId = parseInt(category) //this returns an integer
     postFetch(exerciseName, exerciseInstructions, exerciseImage, categoryId) //fetch the information from backend, tell it what to fetch 
 
 }
@@ -88,20 +75,48 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
 
 
 function postFetch(name, instructions, image, category_id){
-const exercise = {name, instructions, image, category_id};
+    console.log(name, instructions, image, category_id); 
+    let data = {name, instructions, image, category_id} //body object
  fetch(exerciseURL, {
         method:"POST", 
         headers: {
             'Content-Type': 'application/json',
         },
-        body: JSON.stringify(exercise),
+        body: JSON.stringify(data)
         })
         .then(response => response.json())
-        .then(exercise => {
-        console.log('Success:', exercise);
-        })
-        .catch((error) => {
-        console.error('Error:', error);
-        });
-        render(exercises)
-    }
+        .then(exercises=> {
+        console.log(exercises);
+        //const exerciseData = exercises.data
+        const exercisePostMarkup = `
+        <div data-id=${exercises.id}> 
+            <p>${exercises.instructions}</p>
+            <img src=${exercises.image} height="200" width="250"> </img>
+            <h5>Category: ${exercises.category.title}</h5>
+        </div>
+        <br></br>`; 
+
+        //add the new markup into the div container on html to render it 
+        document.querySelector('#exercise-container').innerHTML += exercisePostMarkup;
+
+      
+    })
+
+    
+}
+
+
+function render(exercises) {
+    const exerciseMarkup = `
+                <div data-id=${exercises.id}> 
+                    <h2>${exercises.attributes.name}</h2>
+                    <p>${exercises.attributes.instructions}</p>
+                    <img src=${exercises.attributes.image} height="200" width="250"> </img>
+                    <h5>Category: ${exercises.attributes.category.title}</h5>
+                </div>
+                <br></br>`; 
+
+                //add the new markup into the div container on html to render it 
+                document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
+
+}
