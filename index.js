@@ -5,7 +5,7 @@ const exerciseURL = "http://localhost:3000/api/v1/exercises"
 document.addEventListener('DOMContentLoaded', () => {
     getExercise() //render the exercise arrays
     //fetch and load all exercises
-    let createExerciseForm = document.querySelector("#create-new-exercise-form") //query the exercise form (in html)
+    const createExerciseForm = document.querySelector("#create-new-exercise-form") //query the exercise form (in html)
 
     //After querying the form, the user will input data
     //Wait and listen for the user to submit the form
@@ -63,8 +63,27 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
 }
 
 
-function postFetch(name, instructions, image, category_id){
-
+function postFetch(name, instructions, image, category_id) {
+    const bodyData = {name, instructions, image, category_id}
+    fetch(exerciseURL, {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify(bodyData)
+    })
+    .then(response => response.json())
+    .then(exercise => {
+        console.log(exercise);
+        const exerciseData = exercise.data
+        const exerciseMarkup = `
+        <div data-id=${exercise.id}> 
+            <h2>${exerciseData.attributes.name}</h2>
+            <p>${exerciseData.attributes.instructions}</p>
+            <img src=${exerciseData.attributes.image} height="200" width="250"> </img>
+            <h5>Category: ${exerciseData.attributes.category.title}</h5>
+        </div>
+        <br></br>`;
+         document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
+    })
 
     
 }
