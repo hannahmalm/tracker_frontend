@@ -14,6 +14,7 @@ class Exercise {
 
     //function that constructs/creats a new object (exercise object) -> You could call var newExercise = new Exercise();
     //pass the constructor the arguments of what you want each Exercise to have
+    // Correlattes with -> const newExercise = new Exercise(exercises, exercises.attributes)
     constructor(exercise, exercisesAttributes) {
         this.id = exercise.id 
         this.name = exercisesAttributes.name;
@@ -23,6 +24,20 @@ class Exercise {
         Exercise.all.push(this) // push each new instance of this into array
 
     }
+}
+
+//rendering html should be within the class 
+function renderPostFetch(){
+    const exerciseMarkup = `
+    <div data-id=${exercise.id}> 
+        <h2>${exerciseData.attributes.name}</h2>
+        <p>${exerciseData.attributes.instructions}</p>
+        <img src=${exerciseData.attributes.image} height="200" width="250"> </img>
+        <h5>Category: ${exerciseData.attributes.category.title}</h5>
+    </div>
+    <br></br>`;
+     document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
+
 }
 
 Exercise.all = [];
