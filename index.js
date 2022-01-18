@@ -74,6 +74,11 @@ function postFetch(name, instructions, image, category_id) {
     .then(exercise => {
         console.log(exercise);
         const exerciseData = exercise.data
+        renderPostFetch()
+        
+    })
+
+    function renderPostFetch(){
         const exerciseMarkup = `
         <div data-id=${exercise.id}> 
             <h2>${exerciseData.attributes.name}</h2>
@@ -83,7 +88,8 @@ function postFetch(name, instructions, image, category_id) {
         </div>
         <br></br>`;
          document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
-    })
+
+    }
 
     
 }
