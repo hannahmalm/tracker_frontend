@@ -28,7 +28,7 @@ function getExercise() {
             //Without data id youd have to do: @exercise = Exercise.find_by(name: params[:name])
             //create a new instance of the Exercise class for every exercise in the array
         
-            const newExercise = new Exercise(exercises, exercisesAttributes)
+            const newExercise = new Exercise(exercises, exercises.attributes)
             
             const exerciseMarkup = `
             <div data-id=${exercises.id}> 
@@ -81,7 +81,16 @@ function postFetch(name, instructions, image, category_id) {
     .then(exercise => {
         console.log(exercise); //always console log so that we can see what the code looks like 
         const exerciseData = exercise.data
-        renderPostFetch()
+        const exerciseMarkup = `
+        <div data-id=${exercise.id}> 
+            <h2>${exerciseData.attributes.name}</h2>
+            <p>${exerciseData.attributes.instructions}</p>
+            <img src=${exerciseData.attributes.image} height="200" width="250"> </img>
+            <h5>Category: ${exerciseData.attributes.category.title}</h5>
+        </div>
+        <br></br>`;
+         document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
+        
     })
    
 
