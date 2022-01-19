@@ -17,25 +17,17 @@ class Exercise {
     //function that constructs/creats a new object (exercise object) -> You could call var newExercise = new Exercise();
     //pass the constructor the arguments of what you want each Exercise to have
     // Correlattes with -> const newExercise = new Exercise(exercises, exercises.attributes)
-    // constructor(exercise, exerciseAttributes) {
-    //     this.id = exercise.id 
-    //     this.name = exerciseAttributes.name
-    //     this.instructions = exerciseAttributes.instructions
-    //     this.image = exerciseAttributes.image
-    //     this.category = exerciseAttributes.category
-    //     Exercise.all.push(this) // push each new instance of this into array
-    //     console.log(this);
-    // }
-
-    constructor(id,name,instructions,image,category) {
-        this.id = id
-        this.name = name
-        this.instructions = instructions
-        this.image = image
-        this.category = category
+    constructor(exercise, exerciseAttributes) {
+        this.id = exercise.id 
+        this.name = exerciseAttributes.name
+        this.instructions = exerciseAttributes.instructions
+        this.image = exerciseAttributes.image
+        this.category = exerciseAttributes.category
         Exercise.all.push(this) // push each new instance of this into array
         console.log(this);
     }
+
+   
 
         
 
