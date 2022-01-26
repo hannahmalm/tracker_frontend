@@ -34,17 +34,42 @@ class Exercise {
 
     //rendering html should be within the class 
     //do not have to specify .attributes because its givin within params above
-    renderExerciseCard() {
+    // renderExerciseCard() {
     
+    //     return `
+    //     <div data-id=${this.id}> 
+    //         <h2>${this.name}</h2>
+    //         <p>${this.instructions}</p>
+    //         <img src=${this.image} height="200" width="250"> </img>
+    //        <h2>${this.category.title}</h2>
+    //     </div>
+    //     <br></br>`;
+    // }  <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 ">
+
+    renderExerciseCard(){
         return `
-        <div data-id=${this.id}> 
-            <h2>${this.name}</h2>
-            <p>${this.instructions}</p>
-            <img src=${this.image} height="200" width="250"> </img>
-           <h2>${this.category.title}</h2>
+        <div class="row">
+        <div class="col-md-4 col-md-4 col-md-4"></div>
+        
+        <div class="w-100"></div>
+        
+            <div class="card-body">
+                <h3 class="card-title">${this.name}</h3>
+                <p class="card-text">${this.instructions}</p>
+                <div class="card shadow-sm">
+                <img src=${this.image} class="card-img-top" height="300" width="350"> </img>
+                <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">Category: ${this.category.title} </small>
+                </div>
+            </div>
         </div>
-        <br></br>`;
+        </div>
+        <div class="w-100 d-none d-md-block">
+       `
     }
+
+    
+   
 }
 
 
