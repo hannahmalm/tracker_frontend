@@ -48,29 +48,31 @@ class Exercise {
 
     renderExerciseCard(){
         return `
-        <div class="row">
-        <div class="col-md-4 col-md-4 col-md-4"></div>
-        
-        <div class="w-100"></div>
-        
-            <div class="card-body">
-                <h3 class="card-title">${this.name}</h3>
-                <p class="card-text">${this.instructions}</p>
-                <div class="card shadow-sm">
-                <img src=${this.image} class="card-img-top" height="300" width="350"> </img>
-                <div class="d-flex justify-content-between align-items-center">
-                <small class="text-muted">Category: ${this.category.title} </small>
+            <div class="col-md-4"> 
+              <div class="card mb-4 shadow-sm">
+                <img src=${this.image} class="card-img-top">
+                <div class="card-body">
+                    <h3 class="card-title">${this.name}</h3>
+                    <p class="card-text">${this.instructions}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                    </div>
+                    <small class="text-muted">Category: ${this.category.title} </small>
                 </div>
             </div>
         </div>
-        </div>
-        <div class="w-100 d-none d-md-block">
+    </div>
        `
     }
 
     
    
 }
+
+
+
+
 
 
 Exercise.all = [];
