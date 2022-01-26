@@ -48,21 +48,19 @@ class Exercise {
 
     renderExerciseCard(){
         return `
-            <div class="col-md-4"> 
-              <div class="card mb-4 shadow-sm">
-                <img src=${this.image} class="card-img-top">
-                <div class="card-body">
+                <div class="card">
+                    <iframe width="935" height="450" 
+                        src=${this.image}>
+                    </iframe>
+                    <div class="card-body">
                     <h3 class="card-title">${this.name}</h3>
                     <p class="card-text">${this.instructions}</p>
                     <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                    </div>
                     <small class="text-muted">Category: ${this.category.title} </small>
                 </div>
             </div>
         </div>
-    </div>
+    
        `
     }
 
