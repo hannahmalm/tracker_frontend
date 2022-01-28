@@ -2,7 +2,15 @@ const exerciseURL = "http://localhost:3000/api/v1/exercises"
 
 //Console log once the DOM is loaded - get a fecth request to backend rails index method
 //The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
-document.addEventListener('DOMContentLoaded', () => {
+//The load event fires when a resource and all its dependent resources (including CSS and JavaScript) have finished loading
+//The DOMContentLoaded event is the browser's built-in way to indicate when a page's html is loaded into the DOM
+//It isn't possible to manipulate HTML elements that haven't rendered yet, so trying to manipulate the DOM before the page fully loads can potentially lead to problems.
+//you need to wait until the dom content is all loaded to render the form and the exercise cards
+//By creating an event listener, you keep the code from immediately firing when index.js is loaded
+//document.addEventListener('DOMContentLoaded', () => {     //This is how you write it in es6
+//It is important to note that the DOMContentLoaded event fires once the initial HTML document finishes loading, but does not wait for CSS stylesheets or images to load.
+//It may take a couple of seconds for the youtube videos to load
+document.addEventListener("DOMContentLoaded", function() {
     getExercise() //render the exercise arrays
     //fetch and load all exercises
     const createExerciseForm = document.querySelector("#create-new-exercise-form") //query the exercise form (in html)
@@ -22,10 +30,14 @@ document.addEventListener('DOMContentLoaded', () => {
 // });
 
 //create a function to get the array of all exercises
+//fetch() is similar to XMLHttpRequest that has promises
+//fetch the url bakend
+//using .them allows you to chain multiple asynchronous operations to run in order, one after the other 
+//fetch by default users an HTTP GET to retreive content from the URL
 function getExercise() {
     fetch(exerciseURL) //fetch return returns a promise, in the fetch request return to json 
-    .then(response => response.json()) //parse response into json
-    .then(exercise => { //get the exercise ARRAY - since its an array, you need to iterate
+    .then(response => response.json()) //parse response into json -> this is a callback function that will run if the previous operation is successful
+    .then(exercise => { //get the exercise ARRAY - since its an array, you need to iterate -> This callback receives the input of the previous callback
         exercise.data.forEach(exercises => {
             // debugger; //Use debugger to type in exercise.attributes to find all the attributes
             //ensure you have a data-id to work with OOJS
@@ -58,7 +70,7 @@ function getExercise() {
 
 
 function createFormHandler(e){ //handle the form inputs, prevent the default, and do something with it
-    //prevent the default behavior 
+    //prevent the default behavior from refreshing the page
     e.preventDefault()
     alert('Your exercise was submitted. To view this exercise, scroll to the bottom of this page');
     // debugger  //get values of inputs - query for inputs and get the value
@@ -79,9 +91,10 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
 //-----------Form Validations-----------------------------
 //called within the html form beginning 
 function validateForm() {
-    const exerciseName = document.querySelector('#exercise-name').value
-    const exerciseInstructions = document.querySelector('#exercise-instructions').value
-    const exerciseImage = document.querySelector('#exercise-image').value
+    // const exerciseName = document.querySelector('#exercise-name').value
+    // const exerciseInstructions = document.querySelector('#exercise-instructions').value
+    // const exerciseImage = document.querySelector('#exercise-image').value
+    //defined const variable in previous function so I can use them here
     if (exerciseName == "" || exerciseInstructions == "" || exerciseImage == "") {
       alert("Please fill out all fields");
       return false;
@@ -89,12 +102,20 @@ function validateForm() {
   }
 
 
+//fetch lets you load additional data after information is presented to the user 
+//fetch() uses an HTTP POST to send content gathered through JS Object
+//use HTTP POST to send content gathered in <input> elements
 function postFetch(name, instructions, image, category_id) {
     const bodyData = {name, instructions, image, category_id}
     fetch(exerciseURL, {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(bodyData)
+        method: "POST", //Needed to tell fetch that this is a post request
+        headers: {
+            "Content-Type": "application/json", //metadata indicating what the format of data being sent
+            "Accept": "application/json" //tell the server what data format we accept in return
+        },  
+        body: JSON.stringify(bodyData) //the actual data itself that we are sending in fetch
+        //Whenever data is assigned to the body of the request it needs to be a string -> thats why you use stringify
+        //this would look like: "{"name":"Bicep Curl", "instructions":"test"}"
     })
     .then(response => response.json())
     .then(exercise => {
