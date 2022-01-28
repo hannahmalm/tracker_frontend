@@ -56,10 +56,11 @@ class Exercise {
                     <h3 class="card-title">${this.name}</h3>
                     <p class="card-text">${this.instructions}</p>
                     <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-muted">Category: ${this.category.title} </small>
+                    <small class="text-muted">Split Day: ${this.category.title} </small>
                 </div>
             </div>
         </div>
+        <br>
     
        `
     }

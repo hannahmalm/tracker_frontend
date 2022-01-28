@@ -15,6 +15,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 })
 
+//ADD IN AN ALERT TO USER WHEN FORM IS SUBMITTED
+// const input = document.getElementById('input');
+// input.addEventListener('click', function(event) {
+//   alert('I was clicked!');
+// });
 
 //create a function to get the array of all exercises
 function getExercise() {
@@ -55,6 +60,7 @@ function getExercise() {
 function createFormHandler(e){ //handle the form inputs, prevent the default, and do something with it
     //prevent the default behavior 
     e.preventDefault()
+    alert('Your exercise was submitted. To view this exercise, scroll to the bottom of this page');
     // debugger  //get values of inputs - query for inputs and get the value
     //document.querySelector("#class-name").value
     //document.querySelector('#exercise-name').value
@@ -69,6 +75,18 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
     postFetch(exerciseName, exerciseInstructions, exerciseImage, categoryId) //fetch the information from backend, tell it what to fetch 
 
 }
+
+//-----------Form Validations-----------------------------
+//called within the html form beginning 
+function validateForm() {
+    const exerciseName = document.querySelector('#exercise-name').value
+    const exerciseInstructions = document.querySelector('#exercise-instructions').value
+    const exerciseImage = document.querySelector('#exercise-image').value
+    if (exerciseName == "" || exerciseInstructions == "" || exerciseImage == "") {
+      alert("Please fill out all fields");
+      return false;
+    }
+  }
 
 
 function postFetch(name, instructions, image, category_id) {
