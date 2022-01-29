@@ -106,23 +106,25 @@ function validateForm() {
 //fetch() uses an HTTP POST to send content gathered through JS Object
 //use HTTP POST to send content gathered in <input> elements
 function postFetch(name, instructions, image, category_id) {
-    const bodyData = {name, instructions, image, category_id}
+    const formData = {name, instructions, image, category_id}
     fetch(exerciseURL, {
         method: "POST", //Needed to tell fetch that this is a post request
         headers: {
             "Content-Type": "application/json", //metadata indicating what the format of data being sent
             "Accept": "application/json" //tell the server what data format we accept in return
         },  
-        body: JSON.stringify(bodyData) //the actual data itself that we are sending in fetch
+        body: JSON.stringify(formData) //the actual data itself that we are sending in fetch
         //Whenever data is assigned to the body of the request it needs to be a string -> thats why you use stringify
         //this would look like: "{"name":"Bicep Curl", "instructions":"test"}"
     })
-    .then(response => response.json())
-    .then(exercise => {
+    .then(response => response.json()) //handle responses to fetch() -> server will send a response, to access this response use a .then() callback
+    //This response object has a built in .json method, converting the body of the response from JSON to a JS object
+    .then(exercise => { //in this callback, the js object from the response can be used
         console.log(exercise); //always console log so that we can see what the code looks like 
         const exerciseData = exercise.data
         let newExercise = new Exercise(exerciseData, exerciseData.attributes)
         document.querySelector('#exercise-container').innerHTML += newExercise.renderExerciseCard()
+        //}
         // const exerciseMarkup = `
         // <div data-id=${exercise.id}> 
         //     <h2>${exerciseData.attributes.name}</h2>
@@ -132,8 +134,12 @@ function postFetch(name, instructions, image, category_id) {
         // </div>
         // <br></br>`;
         //  document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
+    .catch(function(error){
+        alert("Oops, something went wrong");
+        console.log(error.message);
+    }) //catch is called when something goes wrong that allows us to handle th error
         
-    })
+})
    
 
    

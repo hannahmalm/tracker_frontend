@@ -9,6 +9,8 @@
 //https://www.youtube.com/watch?v=HboT8g_QSGc
 //NO functions in classes
 //Classes are like blueprints that have specific properties
+//Object orientation allows to write code that structurally establishes the relationshops between data and functions
+// object = Exercise -> create a new instnace for each exercise
 
 
 class Exercise {
@@ -16,11 +18,10 @@ class Exercise {
 
     //function that constructs/creats a new object (exercise object) -> You could call var newExercise = new Exercise();
     //pass the constructor the arguments of what you want each Exercise to have
-    // Correlattes with -> const newExercise = new Exercise(exercises, exercises.attributes)
-    constructor(exercise, exerciseAttributes) {
+    constructor(exercise, exerciseAttributes) { // Correlattes with -> const newExercise = new Exercise(exercises, exercises.attributes)
         this.id = exercise.id 
-        this.name = exerciseAttributes.name
-        this.instructions = exerciseAttributes.instructions
+        this.name = exerciseAttributes.name //instance property
+        this.instructions = exerciseAttributes.instructions //same as exercise.attributes.instructions
         this.image = exerciseAttributes.image
         this.category = exerciseAttributes.category
         Exercise.all.push(this) // push each new instance of this into array
