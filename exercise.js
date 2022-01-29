@@ -18,12 +18,12 @@ class Exercise {
 
     //function that constructs/creats a new object (exercise object) -> You could call var newExercise = new Exercise();
     //pass the constructor the arguments of what you want each Exercise to have
-    constructor(exercise, exerciseAttributes) { // Correlattes with -> const newExercise = new Exercise(exercises, exercises.attributes)
+    constructor(exercise, exercisesAttributes) { // Correlattes with -> const newExercise = new Exercise(exercises, exercises.attributes)
         this.id = exercise.id 
-        this.name = exerciseAttributes.name //instance property
-        this.instructions = exerciseAttributes.instructions //same as exercise.attributes.instructions
-        this.image = exerciseAttributes.image
-        this.category = exerciseAttributes.category
+        this.name = exercisesAttributes.name //instance property
+        this.instructions = exercisesAttributes.instructions //same as exercise.attributes.instructions
+        this.image = exercisesAttributes.image
+        this.category = exercisesAttributes.category
         Exercise.all.push(this) // push each new instance of this into array
         console.log(this);
     }
@@ -59,14 +59,13 @@ class Exercise {
                     <div class="d-flex justify-content-between align-items-center">
                     <small class="text-muted">Split Day: ${this.category.title} </small>
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary1">Edit</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary2">Delete</button>
                     </div>
                 </div>
             </div>
         </div>
         <br>
-    
        `
     }
 

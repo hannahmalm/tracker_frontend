@@ -124,7 +124,6 @@ function postFetch(name, instructions, image, category_id) {
         const exerciseData = exercise.data
         let newExercise = new Exercise(exerciseData, exerciseData.attributes)
         document.querySelector('#exercise-container').innerHTML += newExercise.renderExerciseCard()
-        //}
         // const exerciseMarkup = `
         // <div data-id=${exercise.id}> 
         //     <h2>${exerciseData.attributes.name}</h2>
@@ -136,10 +135,10 @@ function postFetch(name, instructions, image, category_id) {
         //  document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
     .catch(function(error){
         alert("Oops, something went wrong");
-        console.log(error.message);
+        
     }) //catch is called when something goes wrong that allows us to handle th error
         
-})
+    })
    
 
    
