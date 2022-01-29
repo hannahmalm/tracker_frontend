@@ -58,6 +58,10 @@ class Exercise {
                     <p class="card-text">${this.instructions}</p>
                     <div class="d-flex justify-content-between align-items-center">
                     <small class="text-muted">Split Day: ${this.category.title} </small>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                        <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
                 </div>
             </div>
         </div>
