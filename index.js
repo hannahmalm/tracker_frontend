@@ -1,5 +1,12 @@
 const exerciseURL = "http://localhost:3000/api/v1/exercises"
 
+const cardList = document.querySelector('.card-group');
+
+const cardBody = document.querySelector('.card');
+
+const deleteButton = document.getElementById('.delete-exercise')
+
+
 //Console log once the DOM is loaded - get a fecth request to backend rails index method
 //The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
 //The load event fires when a resource and all its dependent resources (including CSS and JavaScript) have finished loading
@@ -101,6 +108,32 @@ function validateForm() {
     }
   }
 
+   //-----------Delete and Edit Listener -----
+    //find the delete button or edit button based on id
+    //listen for a click     
+    cardBody.addEventListener("click", (e) => {
+        e.preventDefault(); 
+        let deletePressed = e.target.id == 'delete-exercise';
+        
+        //let editPressed = e.target.id == 'edit-exercise';
+    
+        console.log(e.target);
+
+        //let id = e.target.parentElement.dataset.id
+
+        //Delete the post with method: DELETE
+        if(deletePressed) {
+            fetch(`${exerciseURL}/${id}`), {
+                method: 'DELETE'
+            }
+            .then(res => res.json()) 
+            .then(res => console.log(res))
+            // .then(response => response.json())
+            // .then(() => location.reload())
+
+        }
+    })
+
 
 //fetch lets you load additional data after information is presented to the user 
 //fetch() uses an HTTP POST to send content gathered through JS Object
@@ -139,6 +172,19 @@ function postFetch(name, instructions, image, category_id) {
     }) //catch is called when something goes wrong that allows us to handle th error
         
     })
+
+
+    //---------------Delete-------------------
+    //for update and delete you have to find the id first d
+    
+
+
+
+
+
+   
+
+
    
 
    
