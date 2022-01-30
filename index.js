@@ -116,9 +116,12 @@ function validateForm() {
     e.preventDefault()
     let deleteButton = e.target.id == 'delete-exercise';
     let editButton = e.target.id == 'edit-exercise';
+    //console.log(e.target.parentElement.parentElement.parentElement.parentElement.dataset.id)
+    let id = e.target.parentElement.parentElement.parentElement.parentElement.dataset.id;
 
     if(deleteButton){
-        console.log("delete");
+        //console.log("delete");
+        fetch(`${exerciseURL}/${id}`)
     }
     
     if(editButton){
