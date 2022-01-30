@@ -18,6 +18,7 @@ const deleteButton = document.getElementById('.delete-exercise')
 //It is important to note that the DOMContentLoaded event fires once the initial HTML document finishes loading, but does not wait for CSS stylesheets or images to load.
 //It may take a couple of seconds for the youtube videos to load
 document.addEventListener("DOMContentLoaded", function() {
+    console.log("dom loaded")
     getExercise() //render the exercise arrays
     //fetch and load all exercises
     const createExerciseForm = document.querySelector("#create-new-exercise-form") //query the exercise form (in html)
@@ -27,6 +28,8 @@ document.addEventListener("DOMContentLoaded", function() {
     createExerciseForm.addEventListener("submit", (e) => createFormHandler(e))
     //prevent the page from auto refreshing - create a handler to do this
     //This handler will prevent this from auto refreshing, and will post the form 
+
+    document.addEventListener("click", (e) => createClickHandler(e))
 
 })
 
@@ -108,31 +111,13 @@ function validateForm() {
     }
   }
 
-   //-----------Delete and Edit Listener -----
-    //find the delete button or edit button based on id
-    //listen for a click     
-    cardBody.addEventListener("click", (e) => {
-        e.preventDefault(); 
-        let deletePressed = e.target.id == 'delete-exercise';
+  function createClickHandler(e){
+    e.preventDefault()
+    console.log("hi");
+    console.log("test");
+   
+  }
         
-        //let editPressed = e.target.id == 'edit-exercise';
-    
-        console.log(e.target);
-
-        //let id = e.target.parentElement.dataset.id
-
-        //Delete the post with method: DELETE
-        if(deletePressed) {
-            fetch(`${exerciseURL}/${id}`), {
-                method: 'DELETE'
-            }
-            .then(res => res.json()) 
-            .then(res => console.log(res))
-            // .then(response => response.json())
-            // .then(() => location.reload())
-
-        }
-    })
 
 
 //fetch lets you load additional data after information is presented to the user 
@@ -174,15 +159,7 @@ function postFetch(name, instructions, image, category_id) {
     })
 
 
-    //---------------Delete-------------------
-    //for update and delete you have to find the id first d
-    
 
-
-
-
-
-   
 
 
    
