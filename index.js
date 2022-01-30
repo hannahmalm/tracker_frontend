@@ -6,6 +6,8 @@ const cardBody = document.querySelector('.card');
 
 const deleteButton = document.getElementById('.delete-exercise')
 
+const exerciseName = document.querySelector('#exercise-name').value
+
 
 //Console log once the DOM is loaded - get a fecth request to backend rails index method
 //The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
@@ -31,6 +33,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
    
     document.addEventListener("click", (e) => createClickHandler(e))
+    
 
 })
 
@@ -75,7 +78,35 @@ function getExercise() {
     })
 } //navigate to the index.js and view xhl to ensure this works 
 
+function createClickHandler(e){
+    e.preventDefault()
+    let deleteButton = e.target.id == 'delete-exercise';
+    let editButton = e.target.id == 'edit-exercise';
+    //console.log(e.target.parentElement.parentElement.parentElement.parentElement.dataset.id)
+    let id = e.target.parentElement.parentElement.parentElement.parentElement.dataset.id;
 
+    if(deleteButton){
+        console.log("delete");
+        // fetch((`${exerciseURL}/${id}`), { method: 'DELETE' })
+        // .then(() => console.log('delete success'))
+        // .then(() => location.reload())
+        
+    }
+    
+    if(editButton){
+        console.log("edit")
+        const parent = e.target.parentElement.parentElement.parentElement;
+        let nameContent = parent.querySelector('.card-title').textContent;
+        let instructionsContent = parent.querySelector('.card-text').textContent;    
+        // console.log(nameContent);
+        // console.log(instructionsContent);
+        exerciseName.value = nameContent;
+        
+        //exerciseName = nameContent.value
+       
+    }
+    
+  }
 
 
 
@@ -83,14 +114,15 @@ function getExercise() {
 function createFormHandler(e){ //handle the form inputs, prevent the default, and do something with it
     //prevent the default behavior from refreshing the page
     e.preventDefault()
-    alert('Your exercise was submitted. To view this exercise, scroll to the bottom of this page');
+    console.log("submitted")
+    //alert('Your exercise was submitted. To view this exercise, scroll to the bottom of this page');
     // debugger  //get values of inputs - query for inputs and get the value
     //document.querySelector("#class-name").value
     //document.querySelector('#exercise-name').value
     //document.querySelector('#exercise-name').value
     //document.querySelector('#exercise-image').value
     //document.querySelector('#category').value
-    const exerciseName = document.querySelector('#exercise-name').value
+    
     const exerciseInstructions = document.querySelector('#exercise-instructions').value
     const exerciseImage = document.querySelector('#exercise-image').value
     const category = document.querySelector('#categories').value //this returns a string
@@ -101,38 +133,19 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
 
 //-----------Form Validations-----------------------------
 //called within the html form beginning 
-function validateForm() {
-    // const exerciseName = document.querySelector('#exercise-name').value
-    // const exerciseInstructions = document.querySelector('#exercise-instructions').value
-    // const exerciseImage = document.querySelector('#exercise-image').value
-    //defined const variable in previous function so I can use them here
-    if (exerciseName == "" || exerciseInstructions == "" || exerciseImage == "") {
-      alert("Please fill out all fields");
-      return false;
-    }
-  }
+// function validateForm() {
+//     // const exerciseName = document.querySelector('#exercise-name').value
+//     // const exerciseInstructions = document.querySelector('#exercise-instructions').value
+//     // const exerciseImage = document.querySelector('#exercise-image').value
+//     //defined const variable in previous function so I can use them here
+//     if (exerciseName == "" || exerciseInstructions == "" || exerciseImage == "") {
+//       alert("Please fill out all fields");
+//       return false;
+//     }
+//   }
 
-  function createClickHandler(e){
-    e.preventDefault()
-    let deleteButton = e.target.id == 'delete-exercise';
-    let editButton = e.target.id == 'edit-exercise';
-    //console.log(e.target.parentElement.parentElement.parentElement.parentElement.dataset.id)
-    let id = e.target.parentElement.parentElement.parentElement.parentElement.dataset.id;
 
-    if(deleteButton){
-        //console.log("delete");
-        fetch(`${exerciseURL}/${id}`)
-    }
-    
-    if(editButton){
-        console.log("edit")
-    }
-    
-    
-   
 
-   
-  }
         
 
 
@@ -158,6 +171,8 @@ function postFetch(name, instructions, image, category_id) {
         const exerciseData = exercise.data
         let newExercise = new Exercise(exerciseData, exerciseData.attributes)
         document.querySelector('#exercise-container').innerHTML += newExercise.renderExerciseCard()
+
+
         // const exerciseMarkup = `
         // <div data-id=${exercise.id}> 
         //     <h2>${exerciseData.attributes.name}</h2>
@@ -167,14 +182,14 @@ function postFetch(name, instructions, image, category_id) {
         // </div>
         // <br></br>`;
         //  document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
-    .catch(function(error){
-        alert("Oops, something went wrong");
+    // .catch(function(error){
+    //     alert("Oops, something went wrong");
         
     }) //catch is called when something goes wrong that allows us to handle th error
         
-    })
 
-
+  
+  
 
 
 
