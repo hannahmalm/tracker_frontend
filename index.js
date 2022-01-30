@@ -4,9 +4,14 @@ const cardList = document.querySelector('.card-group');
 
 const cardBody = document.querySelector('.card');
 
-const deleteButton = document.getElementById('.delete-exercise')
+//const deleteB = document.querySelector('.btn-group').querySelector('.btn-outline-secondary2')
+//const editButton = document.querySelector('.btn-group').querySelector('.btn-outline-secondary1')
 
-const exerciseName = document.querySelector('#exercise-name').value
+ //document.addEventListener("click", (e) => createClickHandler(e))
+ //deleteButton.addEventListener("click", myDelete);
+
+
+
 
 
 //Console log once the DOM is loaded - get a fecth request to backend rails index method
@@ -31,8 +36,8 @@ document.addEventListener("DOMContentLoaded", function() {
     //prevent the page from auto refreshing - create a handler to do this
     //This handler will prevent this from auto refreshing, and will post the form 
 
+    document.addEventListener("dblclick", (e) => createClickHandler(e))
    
-    document.addEventListener("click", (e) => createClickHandler(e))
     
 
 })
@@ -78,6 +83,7 @@ function getExercise() {
     })
 } //navigate to the index.js and view xhl to ensure this works 
 
+
 function createClickHandler(e){
     e.preventDefault()
     let deleteButton = e.target.id == 'delete-exercise';
@@ -87,9 +93,9 @@ function createClickHandler(e){
 
     if(deleteButton){
         console.log("delete");
-        // fetch((`${exerciseURL}/${id}`), { method: 'DELETE' })
-        // .then(() => console.log('delete success'))
-        // .then(() => location.reload())
+        fetch((`${exerciseURL}/${id}`), { method: 'DELETE' })
+        .then(() => console.log('delete success'))
+        .then(() => location.reload())
         
     }
     
@@ -101,6 +107,7 @@ function createClickHandler(e){
         // console.log(nameContent);
         // console.log(instructionsContent);
         exerciseName.value = nameContent;
+
         
         //exerciseName = nameContent.value
        
@@ -122,7 +129,7 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
     //document.querySelector('#exercise-name').value
     //document.querySelector('#exercise-image').value
     //document.querySelector('#category').value
-    
+    const exerciseName = document.querySelector('#exercise-name').value
     const exerciseInstructions = document.querySelector('#exercise-instructions').value
     const exerciseImage = document.querySelector('#exercise-image').value
     const category = document.querySelector('#categories').value //this returns a string
