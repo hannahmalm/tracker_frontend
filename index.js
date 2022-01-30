@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", function() {
     //prevent the page from auto refreshing - create a handler to do this
     //This handler will prevent this from auto refreshing, and will post the form 
 
+   
     document.addEventListener("click", (e) => createClickHandler(e))
 
 })
@@ -113,8 +114,20 @@ function validateForm() {
 
   function createClickHandler(e){
     e.preventDefault()
-    console.log("hi");
-    console.log("test");
+    let deleteButton = e.target.id == 'delete-exercise';
+    let editButton = e.target.id == 'edit-exercise';
+
+    if(deleteButton){
+        console.log("delete");
+    }
+    
+    if(editButton){
+        console.log("edit")
+    }
+    
+    
+   
+
    
   }
         
