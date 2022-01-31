@@ -4,11 +4,14 @@ const cardList = document.querySelector('.card-group');
 
 const cardBody = document.querySelector('.card');
 
-//const deleteB = document.querySelector('.btn-group').querySelector('.btn-outline-secondary2')
-//const editButton = document.querySelector('.btn-group').querySelector('.btn-outline-secondary1')
+//--------------Variables for Editing form------------------------------------------------
+const nameValue = document.getElementById('exercise-name'); //taken from index.html within the form 
+const bodyValue = document.getElementById('exercise-instructions'); //taken from index.html within the form
+const videoValue = document.getElementById('exercise-image'); //taken from index.html within the form
+//const categoryValue = document.getElementById('categories'); //taken from index.html within the form
+const categoryValue = document.querySelector('#categories option');
+const btnSubmit = document.querySelector('#create-exercise');
 
- //document.addEventListener("click", (e) => createClickHandler(e))
- //deleteButton.addEventListener("click", myDelete);
 
 
 
@@ -26,8 +29,7 @@ const cardBody = document.querySelector('.card');
 //It may take a couple of seconds for the youtube videos to load
 document.addEventListener("DOMContentLoaded", function() {
     console.log("dom loaded")
-    getExercise() //render the exercise arrays
-    //fetch and load all exercises
+    getExercise() //render and fetch all the exercise cards within the exercise array 
     const createExerciseForm = document.querySelector("#create-new-exercise-form") //query the exercise form (in html)
 
     //After querying the form, the user will input data
@@ -103,16 +105,48 @@ function createClickHandler(e){
         console.log("edit")
         const parent = e.target.parentElement.parentElement.parentElement;
         let nameContent = parent.querySelector('.card-title').textContent;
-        let instructionsContent = parent.querySelector('.card-text').textContent;    
+        let instructionsContent = parent.querySelector('.card-text').textContent; 
+        const videoParent = e.target.parentElement.parentElement.parentElement.parentElement;
+        const categoryParent = e.target.parentElement.parentElement;
+        //console.log(categoryParent.querySelector('.text-muted').textContent)
+        //console.log(videoParent.querySelector('#myframe').attributes.src.value)
+        let videoContent = videoParent.querySelector('#myframe').attributes.src.value;
+        //let categoryContent = categoryParent.querySelector('.text-muted').textContent;
+        // console.log(videoContent)
         // console.log(nameContent);
         // console.log(instructionsContent);
-        exerciseName.value = nameContent;
+        // console.log(videoContent);
+        nameValue.value = nameContent; //renders old content in the form
+        bodyValue.value = instructionsContent; //renders old content in the form
+        videoValue.value = videoContent; //renders old content in the form
+        // console.log(categoryValue.value)
+        // console.log(categoryValue)
+        // console.log(categoryContent)
+        //categoryValue.value = categoryContent; //renders old content in the form
 
-        
-        //exerciseName = nameContent.value
-       
     }
     
+    //Update the existing post using PATCH method
+    //Ensure that this is done on the backend within the controller and is in the routes
+    btnSubmit.addEventListener('click',(e) => {
+        e.preventDefault()
+        console.log('updated')
+        fetch((`${exerciseURL}/${id}`), { 
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: nameValue.value,
+                instructions: bodyValue.value,
+                image: videoValue.value,
+                category_id: categoryValue.value
+            })
+        })
+            .then(() => console.log('edit success'))
+            .then(() => location.reload())
+
+    })
   }
 
 
@@ -179,6 +213,9 @@ function postFetch(name, instructions, image, category_id) {
         let newExercise = new Exercise(exerciseData, exerciseData.attributes)
         document.querySelector('#exercise-container').innerHTML += newExercise.renderExerciseCard()
 
+    
+
+
 
         // const exerciseMarkup = `
         // <div data-id=${exercise.id}> 
@@ -196,7 +233,7 @@ function postFetch(name, instructions, image, category_id) {
         
 
   
-  
+  //reset input fields to empty the form 
 
 
 

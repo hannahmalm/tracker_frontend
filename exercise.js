@@ -50,14 +50,14 @@ class Exercise {
     renderExerciseCard(){
         return `
                 <div class="card" data-id=${this.id}>
-                    <iframe class="myframe" width="935" height="450" 
+                    <iframe id="myframe" width="935" height="450" 
                         src=${this.image}>
                     </iframe>
                     <div class="card-body" >
                     <h3 class="card-title">${this.name}</h3>
                     <p class="card-text">${this.instructions}</p>
                     <div class="d-flex justify-content-between align-items-center">
-                    <small class="text-muted">Split Day: ${this.category.title} </small>
+                    <small class="text-muted">${this.category.title}</small>
                     <div class="btn-group">
                         <button type="button" class="btn btn-sm btn-outline-secondary1" id="edit-exercise">Edit</button>
                         <button type="button" class="btn btn-sm btn-outline-secondary2" id="delete-exercise">Delete</button>
