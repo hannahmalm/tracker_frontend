@@ -8,8 +8,8 @@ const cardBody = document.querySelector('.card');
 const nameValue = document.getElementById('exercise-name'); //taken from index.html within the form 
 const bodyValue = document.getElementById('exercise-instructions'); //taken from index.html within the form
 const videoValue = document.getElementById('exercise-image'); //taken from index.html within the form
-//const categoryValue = document.getElementById('categories'); //taken from index.html within the form
-const categoryValue = document.querySelector('#categories option');
+const categoryValue = document.getElementById('categories').selectedIndex; //taken from index.html within the form
+//const categoryValue = document.querySelector('categories select option:checked');
 const btnSubmit = document.querySelector('#create-exercise');
 
 
@@ -116,6 +116,7 @@ function createClickHandler(e){
         // console.log(nameContent);
         // console.log(instructionsContent);
         // console.log(videoContent);
+        //console.log(categoryValue)
         nameValue.value = nameContent; //renders old content in the form
         bodyValue.value = instructionsContent; //renders old content in the form
         videoValue.value = videoContent; //renders old content in the form
@@ -140,7 +141,7 @@ function createClickHandler(e){
                 name: nameValue.value,
                 instructions: bodyValue.value,
                 image: videoValue.value,
-                category_id: categoryValue.value
+                //category_id: categoryValue.value
             })
         })
             .then(() => console.log('edit success'))
@@ -207,11 +208,13 @@ function postFetch(name, instructions, image, category_id) {
     })
     .then(response => response.json()) //handle responses to fetch() -> server will send a response, to access this response use a .then() callback
     //This response object has a built in .json method, converting the body of the response from JSON to a JS object
+    .then(() => location.reload())
     .then(exercise => { //in this callback, the js object from the response can be used
         console.log(exercise); //always console log so that we can see what the code looks like 
         const exerciseData = exercise.data
         let newExercise = new Exercise(exerciseData, exerciseData.attributes)
         document.querySelector('#exercise-container').innerHTML += newExercise.renderExerciseCard()
+    
 
     
 

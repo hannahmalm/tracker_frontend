@@ -50,7 +50,7 @@ class Exercise {
     renderExerciseCard(){
         return `
                 <div class="card" data-id=${this.id}>
-                    <iframe id="myframe" width="935" height="450" 
+                    <iframe id="myframe" width="1114" height="500" 
                         src=${this.image}>
                     </iframe>
                     <div class="card-body" >
