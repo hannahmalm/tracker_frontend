@@ -169,23 +169,6 @@ function createFormHandler(e){ //handle the form inputs, prevent the default, an
 
 }
 
-//-----------Form Validations-----------------------------
-//called within the html form beginning 
-// function validateForm() {
-//     // const exerciseName = document.querySelector('#exercise-name').value
-//     // const exerciseInstructions = document.querySelector('#exercise-instructions').value
-//     // const exerciseImage = document.querySelector('#exercise-image').value
-//     //defined const variable in previous function so I can use them here
-//     if (exerciseName == "" || exerciseInstructions == "" || exerciseImage == "") {
-//       alert("Please fill out all fields");
-//       return false;
-//     }
-//   }
-
-
-
-        
-
 
 //fetch lets you load additional data after information is presented to the user 
 //fetch() uses an HTTP POST to send content gathered through JS Object
