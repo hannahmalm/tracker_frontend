@@ -1,8 +1,8 @@
 const exerciseURL = "http://localhost:3000/api/v1/exercises"
 
-const cardList = document.querySelector('.card-group');
+// const cardList = document.querySelector('.card-group');
 
-const cardBody = document.querySelector('.card');
+// const cardBody = document.querySelector('.card');
 
 //--------------Variables for Editing form------------------------------------------------
 const nameValue = document.getElementById('exercise-name'); //taken from index.html within the form 
@@ -11,11 +11,7 @@ const videoValue = document.getElementById('exercise-image'); //taken from index
 const categoryValue = document.getElementById('categories').selectedIndex; //taken from index.html within the form
 //const categoryValue = document.querySelector('categories select option:checked');
 const btnSubmit = document.querySelector('#create-exercise');
-
-
-
-
-
+//-----------------------------------------------------------------------------------------
 
 //Console log once the DOM is loaded - get a fecth request to backend rails index method
 //The DOMContentLoaded event fires when the initial HTML document has been completely loaded and parsed, without waiting for stylesheets, images, and subframes to finish loading
@@ -67,7 +63,7 @@ function getExercise() {
             //create a new instance of the Exercise class for every exercise in the array
             let newExercise = new Exercise(exercises, exercises.attributes)
             
-            // const exerciseMarkup = `
+            // const exerciseHTML = `
             // <div data-id=${exercises.id}> 
             //     <h2>${exercises.attributes.name}</h2>
             //     <p>${exercises.attributes.instructions}</p>
@@ -76,8 +72,8 @@ function getExercise() {
             // </div>
             // <br></br>`; 
 
-            //add the new markup into the div container on html to render it 
-            //document.querySelector('#exercise-container').innerHTML += exerciseMarkup;
+            //add the new HTML into the div container on html to render it 
+            //document.querySelector('#exercise-container').innerHTML += exerciseHTML
             document.querySelector('#exercise-container').innerHTML += newExercise.renderExerciseCard()
 
         })//get access to json data. exercise is an array of exercises
